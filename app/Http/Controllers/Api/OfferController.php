@@ -92,7 +92,7 @@ class OfferController extends Controller
      */
     public function destroy($id)
     {
-         $deleteOffer = Offer::find($id);
+        $deleteOffer = Offer::find($id);
             if ($deleteOffer instanceof Offer) {
                 if ($deleteOffer->delete()) {
                     return response()->json(['message' => 'Offer deleted successfully']);
