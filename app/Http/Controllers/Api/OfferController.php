@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -28,16 +29,8 @@ class OfferController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OfferRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:4'],
-            'en_name' => ['required', 'string', 'min:4'],
-            'details' => ['required', 'string', 'min:4'],
-            'en_details' => ['required', 'string', 'min:4'],
-            'price' => ['required', 'numeric'],
-            'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
         $img=md5(microtime()).$request->image->getClientOriginalName();
         $request->image->storeAs("public/imgs",$img);
         try {
@@ -67,7 +60,7 @@ class OfferController extends Controller
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OfferRequest $request, $id)
     {
     $updateOffer = Offer::find($id);
     if ($request->hasFile('image')) {

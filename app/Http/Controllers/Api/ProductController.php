@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductOption;
@@ -30,18 +31,8 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-        public function store(Request $request)
+        public function store(ProductRequest $request)
     {
-    $request->validate([
-        'name' => ['required', 'string', 'min:4'],
-        'en_name' => ['required', 'string', 'min:4'],
-        'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'details' => ['required', 'string'],
-        'en_details' => ['required', 'string'],
-        'price' => 'required',
-        'is_active' => ['required'],
-        'position' => ['required', 'string'],
-    ]);
 
     try {
         $img=md5(microtime()).$request->image->getClientOriginalName();
@@ -98,18 +89,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-    $request->validate([
-      'name' => ['required', 'string', 'min:4'],
-      'en_name' => ['required', 'string', 'min:4'],
-      'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-      'details' => ['required', 'string'],
-      'en_details' => ['required', 'string'],
-      'price' => 'required',
-      'is_active' => ['required'],
-      'position' => ['required', 'string'],
-        ]);
     $img=md5(microtime()).$request->image->getClientOriginalName();
     $request->image->storeAs("public/imgs", $img);
     $updateProduct = Product::find($id);

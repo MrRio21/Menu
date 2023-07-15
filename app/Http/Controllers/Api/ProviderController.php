@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProviderRequest;
 use App\Models\Provider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -28,17 +29,7 @@ class ProviderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
-        $request->validate([
-            'name' => ['required', 'string', 'min:4'],
-            'eng_name' => ['required', 'string', 'min:4'],
-            'email' => ['required', 'email'],
-            'password' => ['required', 'string', 'min:8'],
-            'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'service_type' => ['required', 'string', 'min:4'],
-            'phone' => ['required', 'string', 'min:8'],
-            'whatsapp' => ['required', 'string', 'min:8'],
-        ]);
+    public function store(ProviderRequest $request){
         $img=md5(microtime()).$request->image->getClientOriginalName();
         $request->image->storeAs("public/imgs",$img);
         $provider = Provider::create([
@@ -75,7 +66,7 @@ class ProviderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProviderRequest $request, $id)
     {
         $img=md5(microtime()).$request->image->getClientOriginalName();
         $request->image->storeAs("public/imgs",$img);

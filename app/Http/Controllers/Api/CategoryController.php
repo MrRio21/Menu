@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -27,14 +28,8 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $request->validate([
-            'category_name' => ['required', 'string', 'min:4'],
-            'en_category_name' => ['required', 'string', 'min:4'],
-            'position' => ['required','string' ],
-            'logo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
         $img=md5(microtime()).$request->logo->getClientOriginalName();
         $request->logo->storeAs("public/imgs",$img);
         $category = Category::updateOrCreate([
@@ -45,7 +40,7 @@ class CategoryController extends Controller
             'provider_id'=>$request['provider_id']
         ]);
 
-        
+
         return response()->json([
             'data'=>$category
         ]);
@@ -58,14 +53,8 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-        public function update(Request $request, $id)
+        public function update(CategoryRequest $request, $id)
     {
-        $request->validate([
-            'category_name' => ['required', 'string', 'min:4'],
-            'en_category_name' => ['required', 'string', 'min:4'],
-            'position' => ['required','string' ],
-            'logo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
         $img=md5(microtime()).$request->logo->getClientOriginalName();
         $request->logo->storeAs("public/imgs",$img);
         $updateCategory = Category::find($id);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BillsRequest;
 use App\Models\Bills;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -29,16 +30,8 @@ class BillsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)  {
+    public function store(BillsRequest $request)  {
         try {
-
-            $request->validate([
-                'customer_name' => ['required', 'string', 'min:3'],
-                'customer_address' => ['required', 'string', 'min:3'],
-                'order_details' => ['required', 'string', 'min:4'],
-                'bill_total' => ['required'],
-                'customer_phone' => ['required', 'string'],
-            ]);
 
             $bills = Bills::create([
                 'customer_name'=>$request['customer_name'],
@@ -66,15 +59,9 @@ class BillsController extends Controller
      * @param  \App\Models\Bills  $bills
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BillsRequest $request, $id)
     {
-         $request->validate([
-            'customer_name' => ['required', 'string', 'min:3'],
-            'customer_address' => ['required', 'string', 'min:3'],
-            'order_details' => ['required', 'string', 'min:4'],
-            'bill_total' => ['required'],
-            'customer_phone' => ['required', 'string'],
-        ]);
+
         $updateBill = Bills::find($id);
         if ($updateBill == null){
             return Response(['message'=>'No Bill Found']);
