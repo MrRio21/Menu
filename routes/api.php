@@ -36,7 +36,7 @@ Route::delete('/bill/{id}', [BillsController::class ,'destroy']);
 
 /////////// Provider
 Route::get('/provider', [ProviderController::class ,'index']);
-Route::post('/provider/store', [ProviderController::class ,'store']);
+// Route::post('/provider/store', [ProviderController::class ,'store']);
 Route::post('/provider/update/{id}', [ProviderController::class ,'update']);
 Route::delete('/provider/{id}', [ProviderController::class ,'destroy']);
 
