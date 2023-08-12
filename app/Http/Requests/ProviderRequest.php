@@ -26,8 +26,6 @@ class ProviderRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:4'],
             'eng_name' => ['required', 'string', 'min:4'],
-            'email' => ['required', 'email'],
-            'password' => ['required', 'string', 'min:8'],
             'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'service_type' => ['required', 'string', 'min:4'],
             'phone' => ['required', 'string', 'min:8'],

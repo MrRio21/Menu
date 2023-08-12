@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AuthRequset;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,12 +19,7 @@ class AuthController extends Controller
             'data'=>$allUsers
         ]);
     }
-    public function store(Request $request){
-        $request->validate([
-            'name' => ['required', 'string', 'min:4'],
-            'userName' => ['required', 'string', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8'],
-        ]);
+    public function store(AuthRequset $request){
         $user = User::create([
             'name' => $request->input('name'),
             'userName' => $request->input('userName'),

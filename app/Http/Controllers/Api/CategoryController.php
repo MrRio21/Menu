@@ -16,6 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        //token
         $allCategory =Category::all();
         return response()->json([
             'data'=>$allCategory
@@ -37,7 +38,6 @@ class CategoryController extends Controller
             'en_category_name'=>$request['en_category_name'],
             'position'=>$request['position'],
             'logo'=>$img,
-            'provider_id'=>$request['provider_id']
         ]);
 
 
@@ -61,7 +61,6 @@ class CategoryController extends Controller
         $updateCategory->category_name = $request->input('category_name');
         $updateCategory->en_category_name = $request->input('en_category_name');
         $updateCategory->position = $request->input('position');
-        $updateCategory->provider_id = $request->input('provider_id');
         $img=md5(microtime()).$request->logo->getClientOriginalName();
         $request->logo->storeAs("public/imgs",$img);
         // $updateCategory->image = $img;

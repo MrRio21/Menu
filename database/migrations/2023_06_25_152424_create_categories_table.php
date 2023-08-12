@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('en_category_name');
             $table->string('logo');
             $table->string('position');
-            $table->unsignedBigInteger('provider_id');
-            $table->foreign('provider_id')->references('id')->on('providers')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

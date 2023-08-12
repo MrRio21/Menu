@@ -6,8 +6,6 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\OfferController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProviderController;
-use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*

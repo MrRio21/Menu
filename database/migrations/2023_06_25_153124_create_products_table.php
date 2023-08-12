@@ -23,8 +23,6 @@ return new class extends Migration
             $table->string('details');
             $table->string('en_details');
             $table->integer('is_active')->default(0);;
-            $table->unsignedBigInteger('provider_id');
-            $table->foreign('provider_id')->references('id')->on('providers')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

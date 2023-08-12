@@ -9,18 +9,13 @@ class Category extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'provider_id',
         'category_name',
         'en_category_name',
         'logo',
         'position',
     ];
 
-    public function provider()
-    {
-        return $this->belongsTo(Provider::class);
-    }
-    
+
     public function products()
     {
         return $this->hasMany(Product::class);

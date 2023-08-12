@@ -35,8 +35,6 @@ class ProviderController extends Controller
         $provider = Provider::create([
             'name'=>$request['name'],
             'eng_name'=>$request['eng_name'],
-            'email'=>$request['email'],
-            'password' => Hash::make($request->input('password')),
             'image'=>$img,
             'service_type'=>$request['service_type'],
             'whatsapp'=>$request['whatsapp'],
@@ -73,8 +71,6 @@ class ProviderController extends Controller
         $editProvider = Provider::updateOrCreate([
             'name'=>$request['name'],
             'eng_name'=>$request['eng_name'],
-            'email'=>$request['email'],
-            'password' => Hash::make($request->input('password')),
             'image'=>$img,
             'service_type'=>$request['service_type'],
             'whatsapp'=>$request['whatsapp'],

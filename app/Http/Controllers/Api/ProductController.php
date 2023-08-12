@@ -52,7 +52,6 @@ class ProductController extends Controller
         'is_active'=>$request['is_active'],
         'position'=>$request['position'],
         'image'=>$img,
-        'provider_id'=>$request['provider_id'],
         'category_id'=>$request['category_id'],
     ]);
 
