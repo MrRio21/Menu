@@ -68,25 +68,27 @@ class ProviderController extends Controller
     {
         $img=md5(microtime()).$request->image->getClientOriginalName();
         $request->image->storeAs("public/imgs",$img);
+
         $editProvider = Provider::updateOrCreate([
-            'name'=>$request['name'],
-            'eng_name'=>$request['eng_name'],
-            'image'=>$img,
-            'service_type'=>$request['service_type'],
-            'whatsapp'=>$request['whatsapp'],
-            'phone'=>$request['phone'],
-            'address'=>$request['address'],
-            'en_address'=>$request['en_address'],
-            'instagram'=>$request['instagram'],
-            'facebook'=>$request['facebook'],
-            'twitter'=>$request['twitter'],
-            'theme'=>$request['theme'],
-            'opened_from'=>$request['opened_from'],
-            'opened_to'=>$request['opened_to'],
-            'is_active'=>$request['is_active'],
-            'url'=>$request['url'],
-            'tables'=>$request['tables'],
-        ]);
+        'name'=>$request['name'],
+        'eng_name'=>$request['eng_name'],
+        'image'=>$img,
+        'service_type'=>$request['service_type'],
+        'whatsapp'=>$request['whatsapp'],
+        'phone'=>$request['phone'],
+        'address'=>$request['address'],
+        'en_address'=>$request['en_address'],
+        'instagram'=>$request['instagram'],
+        'facebook'=>$request['facebook'],
+        'twitter'=>$request['twitter'],
+        'theme'=>$request['theme'],
+        'opened_from'=>$request['opened_from'],
+        'opened_to'=>$request['opened_to'],
+        'is_active'=>$request['is_active'],
+        'url'=>$request['url'],
+        'tables'=>$request['tables'],
+    ]);
+
         return response()->json([
             'data'=>$editProvider
         ]);
