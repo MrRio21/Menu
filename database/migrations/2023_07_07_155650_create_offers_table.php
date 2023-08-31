@@ -16,10 +16,8 @@ return new class extends Migration
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('en_name');
             $table->string('image');
             $table->string('details');
-            $table->string('en_details');
             $table->string('price');
             $table->integer('is_active')->default(0);;
             $table->timestamps();

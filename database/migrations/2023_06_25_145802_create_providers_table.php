@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('service_type');
             $table->string('whatsapp');
             $table->string('address')->nullable();
-            $table->string('en_address')->nullable();
             $table->string('instagram')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();

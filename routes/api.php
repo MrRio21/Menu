@@ -23,40 +23,43 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 //////////// Registration
-Route::get('/allUsers', [AuthController::class ,'index']);
 Route::post('/signup', [AuthController::class ,'store']);
 Route::post('/login', [AuthController::class ,'login']);
 Route::get('/logout', [AuthController::class ,'logout']);
 
-//////////// Bills
-Route::get('/bill', [BillsController::class ,'index']);
-Route::post('/bill/store', [BillsController::class ,'store']);
-Route::post('/bill/update/{is}', [BillsController::class ,'update']);
-Route::delete('/bill/{id}', [BillsController::class ,'destroy']);
+Route::middleware('auth:sanctum')->group(function () {
 
-/////////// Provider
-Route::get('/provider', [ProviderController::class ,'index']);
-// Route::post('/provider/store', [ProviderController::class ,'store']);
-Route::post('/provider/update/{id}', [ProviderController::class ,'update']);
-Route::post('/provider/updated/{id}', [ProviderController::class ,'updated']);
-Route::delete('/provider/{id}', [ProviderController::class ,'destroy']);
+    Route::get('/allUsers', [AuthController::class ,'index']);
+    //////////// Bills
+    Route::get('/bill', [BillsController::class ,'index']);
+    Route::post('/bill/store', [BillsController::class ,'store']);
+    Route::post('/bill/update/{is}', [BillsController::class ,'update']);
+    Route::delete('/bill/{id}', [BillsController::class ,'destroy']);
 
-/////////////// Category
-Route::get('/category', [CategoryController::class ,'index']);
-Route::post('/category/store', [CategoryController::class ,'store']);
-Route::post('/category/update/{id}', [CategoryController::class ,'update']);
-Route::delete('/category/{id}', [CategoryController::class ,'destroy']);
+    /////////// Provider
+    Route::get('/provider', [ProviderController::class ,'index']);
+    // Route::post('/provider/store', [ProviderController::class ,'store']);
+    Route::post('/provider/update/{id}', [ProviderController::class ,'update']);
+    Route::post('/provider/updated/{id}', [ProviderController::class ,'updated']);
+    Route::delete('/provider/{id}', [ProviderController::class ,'destroy']);
 
-/////////////// Product
-Route::get('/product', [ProductController::class ,'index']);
-Route::post('/product/store', [ProductController::class ,'store']);
-Route::post('/product/update/{id}', [ProductController::class ,'update']);
-Route::delete('/product/{id}', [ProductController::class ,'destroy']);
+    /////////////// Category
+    Route::get('/category', [CategoryController::class ,'index']);
+    Route::post('/category/store', [CategoryController::class ,'store']);
+    Route::post('/category/update/{id}', [CategoryController::class ,'update']);
+    Route::delete('/category/{id}', [CategoryController::class ,'destroy']);
 
-////////////// Offer
-Route::get('/offer' ,[OfferController::class , 'index']);
-Route::post('/offer/store' ,[OfferController::class , 'store']);
-Route::post('/offer/update/{id}' ,[OfferController::class , 'update']);
-Route::delete('/offer/{id}' ,[OfferController::class , 'destroy']);
+    /////////////// Product
+    Route::get('/product', [ProductController::class ,'index']);
+    Route::post('/product/store', [ProductController::class ,'store']);
+    Route::post('/product/update/{id}', [ProductController::class ,'update']);
+    Route::delete('/product/{id}', [ProductController::class ,'destroy']);
+
+    ////////////// Offer
+    Route::get('/offer', [OfferController::class , 'index']);
+    Route::post('/offer/store', [OfferController::class , 'store']);
+    Route::post('/offer/update/{id}', [OfferController::class , 'update']);
+    Route::delete('/offer/{id}', [OfferController::class , 'destroy']);
 
 
+});

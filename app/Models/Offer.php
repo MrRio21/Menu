@@ -10,10 +10,8 @@ class Offer extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'en_name',
         'image',
         'details',
-        'en_details',
         'price',
         'is_active',
     ];

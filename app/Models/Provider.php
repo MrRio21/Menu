@@ -16,7 +16,6 @@ class Provider extends Model
         'whatsapp',
         'phone',
         'address',
-        'en_address',
         'instagram',
         'facebook',
         'twitter',
