@@ -27,7 +27,7 @@ Route::post('/signup', [AuthController::class ,'store']);
 Route::post('/login', [AuthController::class ,'login']);
 Route::get('/logout', [AuthController::class ,'logout']);
 
-Route::middleware('auth:sanctum')->group(function () {
+// Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/allUsers', [AuthController::class ,'index']);
     //////////// Bills
@@ -62,4 +62,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/offer/{id}', [OfferController::class , 'destroy']);
 
 
-});
+// });

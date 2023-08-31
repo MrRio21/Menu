@@ -31,19 +31,18 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        $img=md5(microtime()).$request->logo->getClientOriginalName();
-        $request->logo->storeAs("public/imgs",$img);
-        $category = Category::updateOrCreate([
-            'category_name'=>$request['category_name'],
-            'position'=>$request['position'],
-            'logo'=>$img,
+        $img = md5(microtime()) . $request->logo->getClientOriginalName();
+        $request->logo->storeAs("public/imgs", $img);
+        $category = Category::create([
+            'category_name' => $request['category_name'],
+            'position' => $request['position'],
+            'logo' => $img,
         ]);
-
-
         return response()->json([
-            'data'=>$category
+            'data' => $category
         ]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -63,7 +62,6 @@ class CategoryController extends Controller
         $request->logo->storeAs("public/imgs",$img);
         // $updateCategory->image = $img;
         $updateCategory->save();
-
         return response()->json([
             'data'=>$updateCategory
         ]);
@@ -77,7 +75,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-          $deleteCategory = Category::find($id);
+        $deleteCategory = Category::find($id);
             if ($deleteCategory instanceof Category) {
                 if ($deleteCategory->delete()) {
                     return response()->json(['message' => 'Category deleted successfully']);
