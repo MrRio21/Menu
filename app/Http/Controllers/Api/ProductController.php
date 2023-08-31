@@ -19,9 +19,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $allCategory =Category::all();
+        $allProduct =Product::all();
         return response()->json([
-            'data'=>$allCategory
+            'data'=>$allProduct
         ]);
     }
 
@@ -45,10 +45,8 @@ class ProductController extends Controller
 
     $product = Product::create([
         'name'=>$request['name'],
-        'en_name'=>$request['en_name'],
         'price'=>$request['price'],
         'details'=>$request['details'],
-        'en_details'=>$request['en_details'],
         'is_active'=>$request['is_active'],
         'position'=>$request['position'],
         'image'=>$img,
@@ -94,10 +92,7 @@ class ProductController extends Controller
     $request->image->storeAs("public/imgs", $img);
     $updateProduct = Product::find($id);
     $updateProduct->name = $request->input('name');
-    $updateProduct->en_name = $request->input('en_name');
     $updateProduct->details = $request->input('details');
-    $updateProduct->en_details = $request->input('en_details');
-    $updateProduct->en_details = $request->input('en_details');
     $updateProduct->price = $request->input('price');
     $updateProduct->is_active = $request->input('is_active');
     $updateProduct->position = $request->input('position');

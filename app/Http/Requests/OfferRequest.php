@@ -25,9 +25,7 @@ class OfferRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:4'],
-            'en_name' => ['required', 'string', 'min:4'],
             'details' => ['required', 'string', 'min:4'],
-            'en_details' => ['required', 'string', 'min:4'],
             'price' => ['required', 'numeric'],
             'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];

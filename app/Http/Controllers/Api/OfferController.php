@@ -36,9 +36,7 @@ class OfferController extends Controller
         try {
             $offer = Offer::create([
                 "name"      =>   $request['name'],
-                "en_name"     =>    $request["en_name"],
                 "details"=>       $request["details"],
-                "en_details"=>        $request["en_details"],
                 "price"=>         $request["price"]?? null,
                 "is_active"      =>   $request['is_active'],
                 'image'=>$img,
@@ -67,7 +65,7 @@ class OfferController extends Controller
         Storage::delete("/storage/imgs/$updateOffer->image");
         $img=md5(microtime()).$request->image->getClientOriginalName();
         $request->image->storeAs("public/imgs", $img);
-        $data=$request->all(['name','en_name', 'details',"en_details" ,"is_active",'price']);
+        $data=$request->all(['name', 'details',"is_active",'price']);
         $data['image']="$img";
 
         return response()->json([

@@ -35,7 +35,6 @@ class CategoryController extends Controller
         $request->logo->storeAs("public/imgs",$img);
         $category = Category::updateOrCreate([
             'category_name'=>$request['category_name'],
-            'en_category_name'=>$request['en_category_name'],
             'position'=>$request['position'],
             'logo'=>$img,
         ]);
@@ -59,7 +58,6 @@ class CategoryController extends Controller
         $request->logo->storeAs("public/imgs",$img);
         $updateCategory = Category::find($id);
         $updateCategory->category_name = $request->input('category_name');
-        $updateCategory->en_category_name = $request->input('en_category_name');
         $updateCategory->position = $request->input('position');
         $img=md5(microtime()).$request->logo->getClientOriginalName();
         $request->logo->storeAs("public/imgs",$img);
