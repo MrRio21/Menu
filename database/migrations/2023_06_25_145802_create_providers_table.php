@@ -26,11 +26,12 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('theme')->nullable();
-            $table->date('opened_from')->nullable();
-            $table->date('opened_to')->nullable();
+            $table->dateTime('opened_from')->nullable();
+            $table->dateTime('opened_to')->nullable();
             $table->boolean('is_active')->default(0)->nullable();
             $table->string('url')->nullable();
-            $table->string('tables')->nullable();
+            $table->string('tables')->default(0)->nullable();
+            $table->string('discount')->default(0);
             $table->timestamps();
         });
     }

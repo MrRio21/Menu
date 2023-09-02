@@ -15,6 +15,7 @@ class Product extends Model
         'is_active',
         'position',
         'price',
+        'calories',
         'category_id',
     ];
 

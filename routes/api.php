@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BillsController;
+use App\Http\Controllers\Api\BranchController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\OfferController;
 use App\Http\Controllers\Api\ProductController;
@@ -55,11 +56,14 @@ Route::get('/logout', [AuthController::class ,'logout']);
     Route::post('/product/update/{id}', [ProductController::class ,'update']);
     Route::delete('/product/{id}', [ProductController::class ,'destroy']);
 
-    ////////////// Offer
-    Route::get('/offer', [OfferController::class , 'index']);
-    Route::post('/offer/store', [OfferController::class , 'store']);
-    Route::post('/offer/update/{id}', [OfferController::class , 'update']);
-    Route::delete('/offer/{id}', [OfferController::class , 'destroy']);
+    /////////////
+    Route::post('/promotionalOffer/update/{id?}', [ProductController::class ,'promotionalOffer']);
+
+    //////////////// branch
+    Route::get('/branch', [BranchController::class , 'index']);
+    Route::post('/branch/store', [BranchController::class , 'store']);
+    Route::post('/branch/update/{id}', [BranchController::class , 'update']);
+    Route::delete('/branch/{id}', [BranchController::class , 'destroy']);
 
 
 // });

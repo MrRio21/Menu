@@ -38,6 +38,7 @@ class ProviderController extends Controller
             'service_type'=>$request['service_type'],
             'whatsapp'=>$request['whatsapp'],
             'phone'=>$request['phone'],
+            'discount'=>$request['discount'],
             'address'=>$request['address'],
             'en_address'=>$request['en_address'],
             'instagram'=>$request['instagram'],
@@ -92,6 +93,7 @@ class ProviderController extends Controller
                     'opened_from' =>$request['opened_from'],
                     'url' =>$request['url'],
                     'tables' =>$request['tables'],
+                    'discount' =>$request['discount'],
                 ]
         ));
         } else {
@@ -108,6 +110,7 @@ class ProviderController extends Controller
                     'opened_from' =>$request['opened_from'],
                     'url' =>$request['url'],
                     'tables' =>$request['tables'],
+                    'discount' =>$request['discount'],
                 ]
             ));
         }

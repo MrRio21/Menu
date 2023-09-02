@@ -25,6 +25,7 @@ class Provider extends Model
         'is_active',
         'url',
         'tables',
+        'discount',
     ];
 
 }

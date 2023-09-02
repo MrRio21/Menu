@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OfferRequest extends FormRequest
+class BranchRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,12 @@ class OfferRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'min:4'],
-            'details' => ['required', 'string', 'min:4'],
-            'price' => ['required', 'numeric'],
-            'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name'=>['required'],
+            'address'=>['required'],
+            'longitude'=>['required','numeric'],
+            'latitude'=>['required' ,'numeric'],
+            'open_to'=>['date'],
+            'open_from'=>['date']
         ];
     }
 }

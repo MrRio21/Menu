@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('price');
             $table->string('position');
+            $table->string('calories')->nullable();
             $table->string('details');
             $table->integer('is_active')->default(0);;
             $table->unsignedBigInteger('category_id');
