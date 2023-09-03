@@ -28,14 +28,16 @@ Route::post('/signup', [AuthController::class ,'store']);
 Route::post('/login', [AuthController::class ,'login']);
 Route::get('/logout', [AuthController::class ,'logout']);
 
-// Route::middleware('auth:sanctum')->group(function () {
-
-    Route::get('/allUsers', [AuthController::class ,'index']);
-    //////////// Bills
+//////////// Bills
     Route::get('/bill', [BillsController::class ,'index']);
     Route::post('/bill/store', [BillsController::class ,'store']);
     Route::post('/bill/update/{is}', [BillsController::class ,'update']);
     Route::delete('/bill/{id}', [BillsController::class ,'destroy']);
+
+
+// Route::middleware('auth:sanctum')->group(function () {
+
+    Route::get('/allUsers', [AuthController::class ,'index']);
 
     /////////// Provider
     Route::get('/provider', [ProviderController::class ,'index']);
@@ -57,7 +59,7 @@ Route::get('/logout', [AuthController::class ,'logout']);
     Route::delete('/product/{id}', [ProductController::class ,'destroy']);
 
     /////////////
-    Route::post('/promotionalOffer/update/{id?}', [ProductController::class ,'promotionalOffer']);
+    Route::post('/promotionalOffer/update', [ProductController::class ,'promotionalOffer']);
 
     //////////////// branch
     Route::get('/branch', [BranchController::class , 'index']);

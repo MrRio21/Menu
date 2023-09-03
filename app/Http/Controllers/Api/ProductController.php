@@ -234,7 +234,7 @@ class ProductController extends Controller
     if ($image) {
         // Delete the old image if it exists
         if ($id) {
-            $promotionalOffer = PromotionalOffer::find($id);
+            $promotionalOffer = promotionalOffer::find($id);
             if ($promotionalOffer && Storage::disk('public')->exists('images/' . $promotionalOffer->image)) {
                 Storage::disk('public')->delete('images/' . $promotionalOffer->image);
             }
@@ -247,7 +247,7 @@ class ProductController extends Controller
 
     // Create or update the promotional offer
     if ($id) {
-        $promotionalOffer = PromotionalOffer::find($id);
+        $promotionalOffer = promotionalOffer::find($id);
         if (!$promotionalOffer) {
             return response()->json(['error' => 'Promotional offer not found'], 404);
         }
@@ -258,7 +258,7 @@ class ProductController extends Controller
             // Update other attributes here as needed
         ]);
     } else {
-        $promotionalOffer = PromotionalOffer::create([
+        $promotionalOffer = promotionalOffer::create([
             'image' => $imagePath,
             'is_active' => $request->input('is_active', true), // Assuming a default value
             // Set other attributes for a new promotional offer
