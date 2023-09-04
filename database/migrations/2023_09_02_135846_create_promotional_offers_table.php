@@ -16,9 +16,7 @@ return new class extends Migration
         Schema::create('promotional_offers', function (Blueprint $table) {
             $table->id();
             $table->string('image');
-            $table->integer('is_active')->default(0)->nullable(
-                
-            );
+            $table->integer('is_active')->default(0)->nullable();
             $table->timestamps();
         });
     }

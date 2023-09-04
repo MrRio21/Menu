@@ -20,9 +20,8 @@ return new class extends Migration
             $table->string('longitude');
             $table->string('latitude');
             $table->integer('open24')->default(0);
-            $table->dateTime('open_from')->nullable();
-            $table->dateTime('open_to')->nullable();
-
+            $table->string('open_from')->nullable();
+            $table->string('open_to')->nullable();
             $table->timestamps();
         });
     }

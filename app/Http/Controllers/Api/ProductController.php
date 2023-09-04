@@ -150,22 +150,25 @@ class ProductController extends Controller
 
 
     /////////////promotionalOffer
-    public function promotionalOffer1(Request $request)
-    {
-        $request->validate([
+
+public function addOrUpdateOffer(Request $request)
+{
+    $request->validate([
         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'is_active' => 'required|boolean'
     ]);
 
-        // Get the uploaded image file
-        $image = $request->file('image');
+    // Get the uploaded image file
+    $image = $request->file('image');
 
-        // Check if a cover image already exists
-        $coverImage = promotionalOffer::first();
+    // Check if a cover image already exists
+    $coverImage = promotionalOffer::first();
 
-        if ($coverImage) {
-            // If a cover image exists, update it with the new image
-            $coverImageName = $coverImage->image;
+    if ($coverImage) {
+        // If a cover image exists, update it with the new image
+        $coverImageName = $coverImage->image;
 
+        try {
             // Delete the old image file
             Storage::delete("public/imgs/$coverImageName");
 
@@ -175,101 +178,50 @@ class ProductController extends Controller
 
             // Update the cover image record in the database
             $coverImage->update([
-                'image' => $imageName
+                'image' => $imageName,
+                'is_active' => $request->input('is_active')
             ]);
-        } else {
-            // If no cover image exists, create a new one
-            $imageName = md5(microtime()) . $image->getClientOriginalName();
+
+            return response()->json([
+                'message' => 'success',
+                'data' => $coverImage
+            ]);
+        } catch (\Exception $e) {
+            // Handle the error, e.g., log it
+            return response()->json([
+                'message' => 'Error updating promotional offer.',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    } else {
+        // If no cover exists, create a new one
+        $imageName = md5(microtime()) . $image->getClientOriginalName();
+
+        try {
+            // Store the new image file
             $image->storeAs('public/imgs', $imageName);
 
-            // Create a new cover image record in the database
-            promotionalOffer::create([
-                'image' => $imageName
+            // Create a new image record in the database
+            $data = promotionalOffer::create([
+                'image' => $imageName,
+                'is_active' => $request->input('is_active')
             ]);
+
+            return response()->json([
+                'message' => 'Promotional Offer Added Successfully!',
+                'data' => $data
+            ]);
+        } catch (\Exception $e) {
+            // Handle the error, e.g., log it
+            return response()->json([
+                'message' => 'Error creating promotional offer.',
+                'error' => $e->getMessage()
+            ], 500);
         }
-        return back();
     }
-
-
-
-    // public function promotionalOffer(Request $request, $id)
-    // {
-    //     // Find the promotionalOffer by its ID
-    //     $promotionalOffer = promotionalOffer::find($id);
-
-    //     $image = $request->file('coverImage');
-
-    //     if ($promotionalOffer) {
-    //         // Delete the old image if it exists
-    //         if (Storage::disk('public')->exists('images/' . $promotionalOffer->image)) {
-    //             Storage::disk('public')->delete('images/' . $promotionalOffer->image);
-    //         }
-
-    //         // Upload and store the new image
-    //         $imagePath = md5(microtime()) . $image->getClientOriginalName();
-    //         $image->storeAs('public/imgs', $imagePath);
-
-    //         // Update the 'image' and 'is_active' attributes in the database
-    //         $promotionalOffer->update([
-    //             'image' => $imagePath,
-    //             'is_active' => $request->input('is_active'), // Assuming you receive 'is_active' in the request
-    //         ]);
-
-    //         // Optionally, you can update other attributes or perform additional actions.
-
-    //         return response()->json(['message' => 'Promotional offer updated successfully',
-    //         'data'=>$promotionalOffer]
-    //         , 200);
-    //     }
-
-    //     return response()->json(['error' => 'Promotional offer not found'], 404);
-    // }
-
-
-    public function promotionalOffer(Request $request, $id)
-{
-    $image = $request->file('image');
-    $imagePath = null;
-    // dd($id);
-    if ($image) {
-        // Delete the old image if it exists
-        if ($id) {
-            $promotionalOffer = promotionalOffer::find($id);
-            if ($promotionalOffer && Storage::disk('public')->exists('images/' . $promotionalOffer->image)) {
-                Storage::disk('public')->delete('images/' . $promotionalOffer->image);
-            }
-        }
-
-        // Upload and store the new image
-        $imagePath = md5(microtime()) . $image->getClientOriginalName();
-        $image->storeAs('public/imgs', $imagePath);
-    }
-
-    // Create or update the promotional offer
-    if ($id) {
-        $promotionalOffer = promotionalOffer::find($id);
-        if (!$promotionalOffer) {
-            return response()->json(['error' => 'Promotional offer not found'], 404);
-        }
-
-        $promotionalOffer->update([
-            'image' => $imagePath ?: $promotionalOffer->image, // Use the new image if provided, otherwise keep the old image
-            'is_active' => $request->input('is_active', $promotionalOffer->is_active), // Use the new value if provided, otherwise keep the old value
-            // Update other attributes here as needed
-        ]);
-    } else {
-        $promotionalOffer = promotionalOffer::create([
-            'image' => $imagePath,
-            'is_active' => $request->input('is_active', true), // Assuming a default value
-            // Set other attributes for a new promotional offer
-        ]);
-    }
-
-    return response()->json(['message' => 'Promotional offer ' . ($id ? 'updated' : 'created') . ' successfully', 'data' => $promotionalOffer], 200);
 }
 
 
 }
-
 
 

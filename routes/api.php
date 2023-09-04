@@ -59,7 +59,7 @@ Route::get('/logout', [AuthController::class ,'logout']);
     Route::delete('/product/{id}', [ProductController::class ,'destroy']);
 
     /////////////
-    Route::post('/promotionalOffer/update', [ProductController::class ,'promotionalOffer']);
+    Route::post('/promotionalOffer/store', [ProductController::class ,'addOrUpdateOffer']);
 
     //////////////// branch
     Route::get('/branch', [BranchController::class , 'index']);
