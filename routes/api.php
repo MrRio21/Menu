@@ -59,6 +59,7 @@ Route::get('/logout', [AuthController::class ,'logout']);
     Route::delete('/product/{id}', [ProductController::class ,'destroy']);
 
     /////////////
+    Route::get('/promotionalOffer', [ProductController::class ,'promotionalOfferIndex']);
     Route::post('/promotionalOffer/store', [ProductController::class ,'addOrUpdateOffer']);
 
     //////////////// branch

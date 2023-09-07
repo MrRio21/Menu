@@ -94,6 +94,7 @@ class ProductController extends Controller
     {
         $img = md5(microtime()).$request->image->getClientOriginalName();
         $request->image->storeAs("public/imgs", $img);
+        
         $updateProduct = Product::find($id);
         $updateProduct->name = $request->input('name');
         $updateProduct->details = $request->input('details');
@@ -151,11 +152,15 @@ class ProductController extends Controller
 
     /////////////promotionalOffer
 
+    public function promotionalOfferIndex(){
+        $promotionalOffer =promotionalOffer::all();
+        return response()->json(['message'=>'success','data'=>$promotionalOffer]);
+    }
+
 public function addOrUpdateOffer(Request $request)
 {
     $request->validate([
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'is_active' => 'required|boolean'
+        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
     // Get the uploaded image file
