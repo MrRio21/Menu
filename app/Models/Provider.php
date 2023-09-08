@@ -12,7 +12,6 @@ class Provider extends Model
         'name',
         'eng_name',
         'image',
-        'service_type',
         'whatsapp',
         'phone',
         'address',
@@ -26,6 +25,11 @@ class Provider extends Model
         'url',
         'tables',
         'discount',
+        'longitude',
+        'latitude',
+        'google_map_link',
+        'tiktok',
+        'snapchat',
     ];
 
 }

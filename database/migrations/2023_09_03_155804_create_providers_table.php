@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('eng_name');
             $table->string('phone');
             $table->string('image');
-            $table->string('service_type');
             $table->string('whatsapp');
             $table->string('address')->nullable();
             $table->string('instagram')->nullable();
@@ -29,9 +28,14 @@ return new class extends Migration
             $table->dateTime('opened_from')->nullable();
             $table->dateTime('opened_to')->nullable();
             $table->boolean('is_active')->default(0)->nullable();
-            $table->string('url')->nullable();
             $table->string('tables')->default(0)->nullable();
             $table->string('discount')->default(0);
+            $table->string('url')->nullable();
+            $table->string('snapchat')->nullable();
+            $table->string('tiktok')->nullable();
+            $table->string('google_map_link')->nullable();
+            $table->integer('longitude')->nullable();
+            $table->integer('latitude')->nullable();
             $table->timestamps();
         });
     }

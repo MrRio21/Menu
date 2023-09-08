@@ -35,7 +35,6 @@ class ProviderController extends Controller
         $provider = Provider::create([
             'name'=>$request['name'],
             'image'=>$img,
-            'service_type'=>$request['service_type'],
             'whatsapp'=>$request['whatsapp'],
             'phone'=>$request['phone'],
             'discount'=>$request['discount'],
@@ -94,6 +93,11 @@ class ProviderController extends Controller
                     'url' =>$request['url'],
                     'tables' =>$request['tables'],
                     'discount' =>$request['discount'],
+                    'snapchat' =>$request['snapchat'],
+                    'tiktok' =>$request['tiktok'],
+                    'google_map_link' =>$request['google_map_link'],
+                    'latitude' =>$request['latitude'],
+                    'longitude' =>$request['longitude'],
                 ]
         ));
         } else {
@@ -111,6 +115,11 @@ class ProviderController extends Controller
                     'url' =>$request['url'],
                     'tables' =>$request['tables'],
                     'discount' =>$request['discount'],
+                    'snapchat' =>$request['snapchat'],
+                    'tiktok' =>$request['tiktok'],
+                    'google_map_link' =>$request['google_map_link'],
+                    'latitude' =>$request['latitude'],
+                    'longitude' =>$request['longitude'],
                 ]
             ));
         }
