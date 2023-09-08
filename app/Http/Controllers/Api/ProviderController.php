@@ -67,7 +67,7 @@ class ProviderController extends Controller
     {
         // Validate the incoming data using the ProviderRequest class
         $validatedData = $request->validated();
-
+        
         // Handle image upload
         $img = null; // Default image value
         if ($request->hasFile('image')) {
