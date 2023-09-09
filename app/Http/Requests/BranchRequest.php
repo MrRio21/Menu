@@ -28,8 +28,6 @@ class BranchRequest extends FormRequest
             'address'=>['required'],
             'longitude'=>['required','numeric'],
             'latitude'=>['required' ,'numeric'],
-            'open_to'=>['date'],
-            'open_from'=>['date']
         ];
     }
 }
