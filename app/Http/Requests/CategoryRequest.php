@@ -26,7 +26,7 @@ class CategoryRequest extends FormRequest
         return [
             'category_name' => ['required', 'string', 'min:4'],
             'position' => ['required','string' ],
-            'logo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'logo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }
